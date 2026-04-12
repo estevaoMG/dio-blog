@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 
 class PostOut(BaseModel):
+    id: int
     title: str
     content: str
-    publiched_at: datetime | None
-    date: datetime
+    published_at: datetime | None

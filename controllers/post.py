@@ -1,22 +1,30 @@
 from fastapi import APIRouter, Response, status
 
+from database import database
+from models.post import posts
 from schemas.post import PostIn
 from views.post import PostOut
 
 router = APIRouter(prefix="/posts")
 
 
-@router.post("/", status_code=status.HTTP_201_CREATED, response_model=PostOut)
-def create_post(post: PostIn):
-    # fake_db.append(post.model_dump())
-    return post
-
-
 @router.get("/", response_model=list[PostOut])
-def read_posts(
-    response: Response,
+async def read_posts(
     published: bool,
     limit: int,
     skip: int = 0,
 ):
-    return []
+    query = posts.select()
+    return await database.fetch_all(query)
+
+
+@router.post("/", status_code=status.HTTP_201_CREATED, response_model=PostOut)
+async def create_post(post: PostIn):
+    command = posts.insert().values(
+        title=post.title,
+        content=post.content,
+        published_at=post.published_at,
+        published=post.published,
+    )
+    last_id = await database.execute(command)
+    return {**post.model_dump(), "id": last_id}
