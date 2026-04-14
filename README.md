@@ -53,16 +53,10 @@ Se estiver usando **Poetry**:
 poetry install
 ```
 
-Ou com **pip** (se houver `requirements.txt`):
-
-```bash
-pip install -r requirements.txt
-```
-
 ### 3️⃣ Executar a aplicação
 
 ```bash
-uvicorn main:app --reload
+poetry run uvicorn main:app --reload
 ```
 
 Depois, acesse em seu navegador:
