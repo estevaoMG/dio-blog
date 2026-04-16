@@ -1,106 +1,90 @@
-# 📰 Dio Blog
+# 📝 DIO Blog API
 
-Projeto acadêmico desenvolvido como parte dos estudos na **Digital Innovation One (DIO)**, com o objetivo de criar um blog simples em Python, estruturado em camadas e com boas práticas de organização de código.
-
----
-
-## 🚀 Objetivo
-
-Demonstrar o uso de **Programação Orientada a Objetos** e **arquitetura modular** na construção de uma aplicação web do tipo **CRUD (Create, Read, Update, Delete)** para posts de blog.
+API de blog desenvolvida em Python como parte do bootcamp da DIO (Luizalabs), com autenticação JWT, testes automatizados e estrutura baseada em boas práticas de backend.
 
 ---
 
-## 🧩 Estrutura do Projeto
+## ⚙️ Tecnologias utilizadas
 
-```
-dio-blog/
-│
-├── controllers/     # Camada responsável pela lógica de controle e regras de negócio
-├── schemas/         # Definição dos modelos de dados (ex: Pydantic ou dataclasses)
-├── views/           # Rotas / endpoints da aplicação
-├── main.py          # Ponto de entrada principal do sistema
-├── pyproject.toml   # Configuração do projeto e dependências (Poetry)
-├── poetry.lock      # Versões travadas das dependências
-└── LICENSE          # Licença MIT
-```
+- Python 3.12
+- FastAPI
+- SQLite
+- SQLAlchemy (ou Databases, dependendo da implementação)
+- JWT (PyJWT)
+- Pytest
+- Poetry
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 📌 Funcionalidades
 
-- **Python 3.12+**
-- **FastAPI** (ou outro framework web conforme implementação)
-- **Pydantic** — para validação de dados
-- **Uvicorn** — servidor de aplicação ASGI
-- **Poetry** — gerenciamento de dependências e ambiente virtual
+- Cadastro e autenticação de usuários
+- Login com JWT
+- CRUD de posts
+- Proteção de rotas autenticadas
+- Validação de dados com schemas
+- Testes automatizados
 
 ---
 
-## ⚙️ Instalação e Execução
+## 🔐 Autenticação
 
-### 1️⃣ Clonar o repositório
+A API utiliza **JWT (JSON Web Token)** para proteger rotas privadas.
 
-```bash
+Fluxo de autenticação:
+
+1. Usuário realiza login
+2. Recebe um token JWT
+3. Utiliza o token no header das requisições:
+
+Authorization: Bearer <token>
+
+---
+
+## 📦 Instalação e execução
+
+Clone o repositório:
 git clone https://github.com/estevaoMG/dio-blog.git
 cd dio-blog
-```
 
-### 2️⃣ Instalar dependências
-
-Se estiver usando **Poetry**:
-
-```bash
+Instale as dependências:
 poetry install
-```
 
-### 3️⃣ Executar a aplicação
-
-```bash
-poetry run uvicorn main:app --reload
-```
-
-Depois, acesse em seu navegador:
-
-```
-http://localhost:8000
-```
+Execute a aplicação:
+poetry run uvicorn src.main:app --reload
 
 ---
 
-## 📚 Endpoints (Exemplo)
+## 🧪 Testes
 
-| Método | Rota           | Descrição                |
-|--------|----------------|--------------------------|
-| GET    | `/posts`        | Lista todos os posts     |
-| GET    | `/posts/{id}`   | Retorna um post específico |
-| POST   | `/posts`        | Cria um novo post        |
-| PUT    | `/posts/{id}`   | Atualiza um post         |
-| DELETE | `/posts/{id}`   | Exclui um post           |
+poetry run pytest -v
 
 ---
 
-## 🧪 Testes (opcional)
+## 🗂 Estrutura do projeto
 
-Se forem implementados testes, podem ser executados com:
-
-```bash
-pytest
-```
-
----
-
-## 🧑‍💻 Autor
-
-**Estevão Gouveia**  
-📘 Projeto acadêmico — DIO  
-🔗 [GitHub](https://github.com/estevaoMG)
+src/
+ ├── auth/
+ ├── database/
+ ├── models/
+ ├── routes/
+ ├── schemas/
+ ├── tests/
+ └── main.py
 
 ---
 
-## 🪪 Licença
+## 🚧 Melhorias futuras
 
-Este projeto está sob a licença [MIT](./LICENSE).
+- Paginação de posts
+- Refresh token JWT
+- Deploy com Docker
+- CI/CD com GitHub Actions
+- Melhorias na documentação Swagger
 
 ---
 
-> Projeto criado para fins educacionais — explorando boas práticas de desenvolvimento em Python com arquitetura organizada.
+## 👨‍💻 Autor
+
+Estevão Gouveia
+Projeto desenvolvido durante o bootcamp da DIO (Luizalabs Backend Python)
