@@ -69,8 +69,13 @@ src/
  ├── models/
  ├── routes/
  ├── schemas/
- ├── tests/
  └── main.py
+
+tests/
+ ├── __init__.py
+ ├── test_auth.py
+ ├── test_posts.py
+ └── ...
 
 ---
 
